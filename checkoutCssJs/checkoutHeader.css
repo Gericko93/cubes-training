@@ -1,0 +1,32 @@
+
+.header{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+}
+.left-part{
+  flex:1;
+}
+.logo{
+  width:300px;
+}
+.mid-part{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.checkout-counter{
+  font-weight:600;
+  color:hsl(192, 53%, 34%);
+  cursor:pointer;
+}
+.right-part{
+  flex:1;
+  display:flex;
+  justify-content:end;
+}
+.lock-icon{
+  height:16px;
+}

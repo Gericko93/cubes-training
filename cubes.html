@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rubik's Cubes</title>
+    <link rel="stylesheet" href="mainPageCssJs/header.css">
+    <link rel="stylesheet" href="mainPageCssJs/cubes.css">
+    <link rel="stylesheet" href="mainPageCssJs/general.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="header">
+      <div class="left-part">
+        <div class="logo-container">
+          <img src="logo-icons/logo.png" class="logo">
+        </div>
+      </div>
+      <div class="mid-part">
+        <input class="search-bar">
+        <button class="search-icon-button"><img src="logo-icons/search-icon.png" class="search-icon"></button>
+      </div>
+      <div class="right-part">
+        <a target="_blank" href="checkout.html">
+          <div class="shopping-cart-image">
+            <img class="shopping-cart" src="logo-icons/shopping-cart.png">
+            <div class="shopping-cart-counter js-shopping-cart-counter">0</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="cubes-grid-container js-cubes-grid-container">
+    </div>
+    <script src="mainPageCssJs/cubesStructure.js" type="module"></script>
+  </body>
+</html>

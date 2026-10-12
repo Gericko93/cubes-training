@@ -1,0 +1,62 @@
+
+.cubes-grid-container{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap:10px;
+  row-gap:10px;
+}
+.singular-cube-container{
+  box-shadow:4px 4px 4px rgba(0,0,0,0.15);
+  padding:10px;
+}
+.rating-cubo{
+  display:flex;
+}
+.rating-cubo div{
+  margin-top:14px;
+  margin-left:2px;
+}
+.rating-cubo img {
+  width:100px;
+  margin-top:10px;
+}
+.imagen-cubo img {
+  width:100%;
+  aspect-ratio: 1/1;
+  object-fit:contain;
+}
+.agregar-al-carrito-boton{
+  background-color:hsl(48, 100%, 54%);
+  border:none;
+  font-size:16px;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.agregar-al-carrito-boton:hover{
+  background-color:hsl(48, 100%, 44%);
+}
+.agregar-al-carrito-boton-container{
+  justify-content:center;
+  align-items:center;
+  display:flex;
+}
+.de-0-a-10-selector{
+  justify-content:center;
+  align-items:center;
+  display:flex;
+  margin-bottom:5px;
+}
+
+.precio-cubo{
+  font-weight:bold;
+  font-size:20px;
+  margin-top:10px;
+}
+
+
+@media (max-width:1000px){
+  .cubes-grid-container{
+    grid-template-columns: 1fr 1fr 1fr
+  }
+}

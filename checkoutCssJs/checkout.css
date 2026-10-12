@@ -1,0 +1,32 @@
+.review-payment-order-summary-container{
+  display:flex;
+  flex-direction:column;
+}
+.review-order-title{
+  font-weight:bold;
+}
+.payment-order-summary-container{
+  display:flex;
+  flex-direction:row;
+}
+.products-summary{
+  flex:1;
+}
+.order-summary{
+  flex:0.5;
+  display:flex;
+  flex-direction:column;
+  line-height:20px;
+}
+.order-summary div{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
+.resumen-title{
+  font-weight:bold;
+  font-size:12px;
+}
+.review-order-title{
+  font-size:12px;
+}
