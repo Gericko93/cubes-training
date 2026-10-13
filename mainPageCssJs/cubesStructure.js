@@ -1,11 +1,9 @@
 import {cubes} from "../data/cubes.js"
-import {cart,countCart} from "../data/cart.js";
-
-const formatter = new Intl.NumberFormat("es-CO");  //una cosa de javascript para formatear dependiendo el lugar
+import {cart,countCart,formatter,saveToStorage} from "../data/cart.js";
+  //una cosa de javascript para formatear dependiendo el lugar
 //formatea fechas, dinero, lo que sea.
 let cubosHTML = "";
 cubes.forEach((cube)=>{
-
   cubosHTML +=`
   <div class="singular-cube-container">
     <div class="imagen-cubo">
@@ -71,9 +69,10 @@ document.querySelectorAll(".agregar-al-carrito-boton").forEach((botonAgregar)=>{
           quantity : quantityToAdd
         })
        }
-       console.log(cart);
        //luego de que se agregó el producto, se cuenta todo cart y el carrito de arriba muestra ese valor
        document.querySelector(".js-shopping-cart-counter").textContent = countCart();
+       saveToStorage();
     })
 })
 
+//darle al logo debe devolver a cubes.html
