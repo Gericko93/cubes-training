@@ -4,5 +4,12 @@ body{
   font-family:Arial;
   margin-top:0;
   margin-bottom:0;
-  font-size:10px;
+  font-size:11px;
+}
+
+@media (max-width:1200px){
+  body{
+    margin-right:50px;
+    margin-left:50px;
+  }
 }

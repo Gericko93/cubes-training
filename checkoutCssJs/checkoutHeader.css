@@ -17,6 +17,10 @@
   align-items:center;
   justify-content:center;
 }
+.checkout-title{
+  font-size:16px;
+  font-weight:bold;
+}
 .checkout-counter{
   font-weight:600;
   color:hsl(192, 53%, 34%);
