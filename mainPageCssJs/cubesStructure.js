@@ -1,7 +1,8 @@
 import {cubes} from "../data/cubes.js"
-import {cart,countCart,formatter,saveToStorage} from "../data/cart.js";
+import {cart,countCart,formatter,saveToStorage,addToCart} from "../data/cart.js";
   //una cosa de javascript para formatear dependiendo el lugar
 //formatea fechas, dinero, lo que sea.
+document.querySelector(".js-shopping-cart-counter").textContent = countCart();
 let cubosHTML = "";
 cubes.forEach((cube)=>{
   cubosHTML +=`
@@ -46,33 +47,8 @@ document.querySelector(".js-cubes-grid-container").innerHTML = cubosHTML;
 document.querySelectorAll(".agregar-al-carrito-boton").forEach((botonAgregar)=>{
     botonAgregar.addEventListener("click",()=>{
        const {cubeId} = botonAgregar.dataset
-       let cubeToAdd;
-       // primero, encuentra el cubo en cubes.js para sacarle la información
-       cubes.forEach((cube)=>{
-        if (cube.id===cubeId){
-          cubeToAdd = cube
-        }
-       })
-       //luego, busca ese cubeToAdd en cart , para ver si ya está 
-       //si ya está le suma uno a lo que ya está, sino pone quantity=1
-       let found = false;
-       let quantityToAdd = Number(document.querySelector(`.js-select-list-${cubeId}`).value)
-       cart.forEach((cube)=>{
-        if (cubeToAdd.id === cube.id){
-          cube.quantity+=quantityToAdd
-          found = true;
-        }
-       })
-       if (!found){
-        cart.push({
-          id : cubeToAdd.id,
-          quantity : quantityToAdd
-        })
-       }
-       //luego de que se agregó el producto, se cuenta todo cart y el carrito de arriba muestra ese valor
+       addToCart(cubeId);
        document.querySelector(".js-shopping-cart-counter").textContent = countCart();
        saveToStorage();
     })
 })
-
-//darle al logo debe devolver a cubes.html

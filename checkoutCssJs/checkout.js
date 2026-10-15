@@ -1,10 +1,26 @@
-import {cart,findCube,formatter,removeFromCart} from "../data/cart.js"
+import {cart,findCube,formatter,removeFromCart,countCart} from "../data/cart.js"
 let checkoutHtml=""
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"
+import {deliveryOptions} from "../data/deliveryOptions.js"
+
+console.log(dayjs().format("dddd, MMMM D"));
+document.querySelector(".js-checkout-counter").textContent = `(${countCart()} items)`
+
 cart.forEach((cartItem)=>{
+  let deliveryOptionId = cartItem.deliveryOptionId;
+  let deliveryOption;
+  deliveryOptions.forEach((option)=>{
+    if (option.id === deliveryOptionId){
+      deliveryOption = option;
+    }
+  })
+  let today = dayjs();
+  let deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+  const dateString = deliveryDate.format("dddd, MMMM D")
   let cube = findCube(cartItem.id)
   checkoutHtml += `
-        <div class="single-product-container-${cartItem.id}">
-            <div class="delivery-date">Fecha de entrega: Wednesday, October 14</div>
+        <div class="single-product-container single-product-container-${cartItem.id}">
+            <div class="delivery-date">Fecha de entrega: ${dateString}</div>
             <div class="cube-data-delivery-options">
               <div class="cube-image-container">
                 <img class="cube-image" src="cubes/${cube.imageName}.webp">
@@ -20,28 +36,7 @@ cart.forEach((cartItem)=>{
               </div>
               <div class="delivery-options">
                 <div class="escoja">Escoja una opción de Envío</div>
-                <label class="delivery-option-1">
-                  <input type="radio" name="hola">
-                    <div>
-                        <div class="date">Thursday, October 22</div>
-                        <div>Envío Gratís</div>
-                    </div>
-                  </label>
-
-                <label class="delivery-option-2">
-                  <input type="radio" name="hola">
-                    <div>
-                        <div class="date">Friday, October 16</div>
-                        <div>$4.000 - Envío</div>
-                    </div>
-                </label>
-                <label class="delivery-option-3">
-                  <input type="radio" name="hola">
-                    <div>
-                        <div class="date">Wednesday, October 14</div>
-                        <div>$10.000 - Envío</div>
-                    </div>
-                </label>
+                ${deliveryOptionsHTML(cartItem)}
               </div>
             </div>
           </div>
@@ -60,5 +55,35 @@ document.querySelectorAll(".js-delete").forEach((button)=>{
     let {id} = button.dataset;
     document.querySelector(`.single-product-container-${id}`).remove(); 
     removeFromCart(id);  
+    document.querySelector(".js-checkout-counter").textContent = `(${countCart()} items)`
     })  
-})                           
+})
+
+/*
+loop throuhg deliveryoptions
+for each option generate somee html
+combine the html together
+*/
+function deliveryOptionsHTML(cartItem){
+  let html = "";
+
+  deliveryOptions.forEach((deliveryOption)=>{
+    let today = dayjs();
+    let deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+    const dateString = deliveryDate.format("dddd, MMMM D")
+    const priceString = deliveryOption.priceColombianPesos === 0 ? "Envío Grátis" : `Costo del envío: $${formatter.format(deliveryOption.priceColombianPesos)}`
+
+    const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
+
+   html += `
+    <label class="delivery-option">
+      <input type="radio" ${isChecked? "checked" : ""} name="delivery-${cartItem.id}">
+        <div>
+            <div class="date">${dateString}</div>
+            <div>${priceString}</div>
+        </div>
+    </label>
+    `
+  })
+  return html;
+}

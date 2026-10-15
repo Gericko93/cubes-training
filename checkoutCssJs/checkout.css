@@ -133,3 +133,6 @@ input[type="radio"],label{
   color:brown;
   font-size:14px;
 }
+.delivery-option{
+  display:flex;
+}
