@@ -1,7 +1,7 @@
-import {cart,findCube,formatter,removeFromCart,countCart} from "../data/cart.js"
+import {cart,findCube,formatter,removeFromCart,countCart,updateDeliveryOption} from "../data/cart.js"
 let checkoutHtml=""
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"
-import {deliveryOptions} from "../data/deliveryOptions.js"
+import {deliveryOptions,findDeliveryOption} from "../data/deliveryOptions.js"
 
 console.log(dayjs().format("dddd, MMMM D"));
 document.querySelector(".js-checkout-counter").textContent = `(${countCart()} items)`
@@ -20,7 +20,7 @@ cart.forEach((cartItem)=>{
   let cube = findCube(cartItem.id)
   checkoutHtml += `
         <div class="single-product-container single-product-container-${cartItem.id}">
-            <div class="delivery-date">Fecha de entrega: ${dateString}</div>
+            <div class="delivery-date js-delivery-date">Fecha de entrega: ${dateString}</div>
             <div class="cube-data-delivery-options">
               <div class="cube-image-container">
                 <img class="cube-image" src="cubes/${cube.imageName}.webp">
@@ -76,7 +76,7 @@ function deliveryOptionsHTML(cartItem){
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
    html += `
-    <label class="delivery-option">
+    <label class="delivery-option js-delivery-option" data-cube-id="${cartItem.id}" data-delivery-option-id="${deliveryOption.id}">
       <input type="radio" ${isChecked? "checked" : ""} name="delivery-${cartItem.id}">
         <div>
             <div class="date">${dateString}</div>
@@ -87,3 +87,16 @@ function deliveryOptionsHTML(cartItem){
   })
   return html;
 }
+
+
+document.querySelectorAll(".js-delivery-option").forEach((option)=>{
+  option.addEventListener("click",()=>{
+    const {cubeId, deliveryOptionId} = option.dataset
+    let deliveryOption = findDeliveryOption(deliveryOptionId);
+    updateDeliveryOption(cubeId, deliveryOptionId)
+     let today = dayjs();
+    let deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+    const dateString = deliveryDate.format("dddd, MMMM D")
+    document.querySelector(".js-delivery-date").textContent = `Fecha de entrega: ${dateString}`
+  })
+})

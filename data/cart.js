@@ -17,9 +17,20 @@ export function removeFromCart(id){
   cart = cart.filter(cartItem => cartItem.id !== id)
   saveToStorage();
 }
+//lo encuentra en cubes, no en cart
 export function findCube(id){
   let returnedCube;
   cubes.forEach((cube)=>{
+    if (id===cube.id){
+      returnedCube = cube;
+    } 
+  })
+  return returnedCube;
+}
+
+export function findCubeCart(id){
+  let returnedCube;
+  cart.forEach((cube)=>{
     if (id===cube.id){
       returnedCube = cube;
     } 
@@ -59,4 +70,13 @@ export function addToCart(cubeId){
         })
        }
        //luego de que se agregó el producto, se cuenta todo cart y el carrito de arriba muestra ese valor
+}
+/*
+1. loop through the cart and find the product
+2. update the deliveryOptionId of the product
+*/
+export function updateDeliveryOption(cubeId, deliveryOptionId){
+  let cube = findCubeCart(cubeId);
+  cube.deliveryOptionId = deliveryOptionId;
+  saveToStorage();
 }
