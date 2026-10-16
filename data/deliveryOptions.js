@@ -19,6 +19,5 @@ export function findDeliveryOption(id){
       deliveryOption = option;
     }
   })
-  console.log(deliveryOption); //funciona
   return deliveryOption;
 }
