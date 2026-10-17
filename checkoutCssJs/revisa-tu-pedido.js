@@ -34,7 +34,7 @@ export function renderOrderSummary(){
                     <input type="number" class="js-actual-input-quantity-${cartItem.id} invisible">
                     <div class="save js-save js-save-${cartItem.id} invisible" data-id="${cartItem.id}"> Guardar </div> 
                     <div class="update js-update js-update-${cartItem.id}" data-id ="${cartItem.id}" >Actualizar</div>
-                    <div class="delete js-delete" data-id ="${cartItem.id}">Eliminar</div>
+                    <div class="delete js-delete js-delete-${cartItem.id}" data-id ="${cartItem.id}">Eliminar</div>
                   </div>  
                 </div>
                 <div class="delivery-options">
@@ -136,13 +136,22 @@ export function renderOrderSummary(){
       updateButton.classList.remove("invisible")
       const inputElement = document.querySelector(`.js-actual-input-quantity-${id}`)
       let valueToAdd = Number(inputElement.value)
-      cartItem.quantity = valueToAdd
+      if (valueToAdd <0)
+        {
+          inputElement.value ="";
+          alert("la cantidad no puede ser negativa")
+        }
+      else if (valueToAdd ==0){
+        document.querySelector(`.js-delete-${id}`).click();
+      }
+      else {
+        cartItem.quantity = valueToAdd
       document.querySelector(`.js-input-quantity-${id}`).textContent = `Cantidad:${cartItem.quantity}`
       inputElement.classList.add("invisible")  
       saveToStorage();  
       renderOrderSummary()
       renderResumenPedido();
-      
+      }
     })
   }) 
     renderResumenPedido();
