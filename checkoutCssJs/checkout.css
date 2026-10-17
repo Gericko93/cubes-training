@@ -56,10 +56,10 @@
   color:brown;
   font-weight:bold;
 }
-.update, .delete {
+.update, .delete, .save {
   color:hsl(195, 88%, 46%);
 }
-.update:hover, .delete:hover{
+.update:hover, .delete:hover, .save:hover{
   color:hsl(195, 88%, 36%);
   text-decoration:underline;
   cursor:pointer;
@@ -135,4 +135,12 @@ input[type="radio"],label{
 }
 .delivery-option{
   display:flex;
+}
+.invisible{
+  display:none
+}
+
+input[type=number]{
+  width:40px;
+  box-sizing:border-box; /* evita que padding y border lo afecten*/
 }
