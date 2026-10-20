@@ -28,7 +28,7 @@ export function renderOrderSummary(){
                 </div>
                 <div class="cube-data">
                   <div class="cube-name">${cube.name}</div>  
-                  <div class="cube-price">$${formatter.format(cube.priceColombianPesos)}</div>  
+                  <div class="cube-price">$${cube.getPrice()}</div>  
                   <div class="cube-quantity-container">
                     <div class="quantity js-input-quantity-${cartItem.id}">Cantidad:${cartItem.quantity}</div>
                     <input type="number" class="js-actual-input-quantity-${cartItem.id} invisible">

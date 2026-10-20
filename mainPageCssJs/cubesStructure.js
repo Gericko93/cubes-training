@@ -1,5 +1,5 @@
 import {cubes} from "../data/cubes.js"
-import {cart,countCart,formatter,saveToStorage,addToCart} from "../data/cart.js";
+import {countCart,saveToStorage,addToCart} from "../data/cart.js";
   //una cosa de javascript para formatear dependiendo el lugar
 //formatea fechas, dinero, lo que sea.
 document.querySelector(".js-shopping-cart-counter").textContent = countCart();
@@ -14,11 +14,11 @@ cubes.forEach((cube)=>{
       ${cube.name}
     </div>
     <div class="rating-cubo">
-      <img src="ratings/rating-${cube.rating.stars*10}.png">
+      <img src="ratings/rating-${cube.getStarsRating()}.png">
       <div>${cube.rating.count}</div>
     </div>
     <div class="precio-cubo">
-      $${formatter.format(cube.priceColombianPesos)}
+      $${cube.getPrice()}
     </div>
     <div class="de-0-a-10-selector"> 
       <select class="js-select-list-${cube.id}">
