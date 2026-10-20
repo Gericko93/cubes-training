@@ -1,5 +1,5 @@
 import { renderOrderSummary } from "./revisa-tu-pedido.js";
 import {renderResumenPedido} from "./resumen-pedido.js"
-import '../data/cart-oop.js';
+import '../data/cart-class.js';
 renderOrderSummary();
 renderResumenPedido();
