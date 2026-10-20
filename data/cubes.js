@@ -20,7 +20,28 @@ class Cube {
   getPrice(){
     return formatter.format(this.priceColombianPesos);
   }
+  extraInfoHTML(){
+    return `
+    `;
+  }
 }
+
+//class for mirror cubes
+class MirrorCube extends Cube{
+//color : gray, gold, etc
+  color;
+  constructor(cubeDetails){
+    super(cubeDetails); //calls the constructor of the parent
+    this.color = cubeDetails.color;
+  }
+
+  extraInfoHTML(){
+    return `
+      <div>Color:${this.color}</div>
+    `;
+  }
+}
+
 export const cubes = [{
   imageName:"4pk-cubos",
   name:"4pk Cubos Rubik Juguetes 2x2 3x3 4x4 5x5 Stickerless Speed",
@@ -49,7 +70,9 @@ export const cubes = [{
   rating:{
     stars:"4.5",
     count:"348"
-    }
+    },
+  type: "mirror",
+  color: "silver"  
   },
   {
   imageName:"ciyuan-3x3",
@@ -149,7 +172,9 @@ export const cubes = [{
   rating:{
     stars:"5.0",
     count:"480"
-    }
+    },
+  type: "mirror",
+  color: "silver"
   },
   {
   imageName:"moyu-mofang-3x3",
@@ -179,8 +204,11 @@ export const cubes = [{
   rating:{
     stars:"5.0",
     count:"480"
-    }
+    },
+  type: "mirror",
+  color:"blue"
   },
+
   {
   imageName:"qiyi-3x3-llavero",
   name:"Mini Cubo Rubik Qiyi 3x3x3 Llavero Stickerless Antiestrés",
@@ -222,5 +250,8 @@ export const cubes = [{
     }
   },
 ].map((cubeDetails)=>{
+  if (cubeDetails.type==="mirror"){
+    return new MirrorCube(cubeDetails);
+  }
   return new Cube(cubeDetails);
 });

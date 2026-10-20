@@ -34,6 +34,11 @@ cubes.forEach((cube)=>{
         <option value ="10">10</option>
       </select>
     </div>
+
+    ${
+      cube.extraInfoHTML()
+      //polymorphism, an alternative to an if statement
+    }
     <div class="agregar-al-carrito-boton-container">
       <button class="agregar-al-carrito-boton" data-cube-id = "${cube.id}"> Agregar al carrito</button>
     </div>
