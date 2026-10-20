@@ -21,17 +21,6 @@ class Cube {
     return formatter.format(this.priceColombianPesos);
   }
 }
-const cube1 = new Cube({
-  imageName:"4pk-cubos",
-  name:"4pk Cubos Rubik Juguetes 2x2 3x3 4x4 5x5 Stickerless Speed",
-  id:"1",
-  priceColombianPesos:44619,
-  rating:{
-    stars:"5.0",
-    count:"12"
-    }
-  });
-console.log(cube1);
 export const cubes = [{
   imageName:"4pk-cubos",
   name:"4pk Cubos Rubik Juguetes 2x2 3x3 4x4 5x5 Stickerless Speed",
@@ -235,5 +224,3 @@ export const cubes = [{
 ].map((cubeDetails)=>{
   return new Cube(cubeDetails);
 });
-
-console.log(cubes);
