@@ -3,21 +3,21 @@ export const formatter = new Intl.NumberFormat("es-CO");
 
 
 class Cart {
-  localStorageKey;
+  #localStorageKey; //# makes the property private
   cartItems;
   constructor(localStorageKey){
     /*
     when we generate an object it will run
     this constructor automaticaally
     */
-  this.localStorageKey = localStorageKey;
+  this.#localStorageKey = localStorageKey;
   
-  this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+  this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [];
 
   }
   
   saveToStorage(){
-        localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems))
+        localStorage.setItem(this.#localStorageKey,JSON.stringify(this.cartItems))
   };
   removeFromCart(id){
         this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== id)
@@ -84,6 +84,7 @@ class Cart {
 }
 const cart = new Cart("cart-oop");
 const businessCart = new Cart("business-cart-oop");
+
 businessCart.addToCart("1")
 businessCart.addToCart("2")
 
